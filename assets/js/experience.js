@@ -97,7 +97,7 @@ var Typer = {
   }
   
   Typer.speed = 3;
-  Typer.file = "assets/pages/experience.html";
+  Typer.file = "./assets/pages/experience.html";
   Typer.init();
   
   var timer = setInterval("t();", 30);
