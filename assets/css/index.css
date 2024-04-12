@@ -9,12 +9,25 @@ body {
 #console {
   font-family: courier, monospace;
   color: #0f0;
-  max-width: 60%;
+  max-width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
   font-size: 20px;
 }
+
+@media screen and (max-width: 768px) {
+  #console {
+    font-family: courier, monospace;
+    color: #0f0;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    font-size: 14px;
+  }
+}
+
 
 #head {
   color: rgb(47, 0, 255);
@@ -58,6 +71,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   align-items: center;
+  font-size: 100%;
 }
 
 .navtext {
@@ -78,6 +92,7 @@ letter-spacing: 0%;
     max-width: 60%;
     margin-left: auto;
     margin-right: auto;
+    font-size: 65%;
   }
 }
 
@@ -155,12 +170,12 @@ letter-spacing: 0%;
 
 @media screen and (max-width: 768px) {
   #gif{
-    width: 80%;
+    width: 50%;
     height: auto;
   }
 
   #project_pic{
-    width: 80%;
+    width: 50%;
     height: auto;
   }
 }
