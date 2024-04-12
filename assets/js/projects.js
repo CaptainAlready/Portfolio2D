@@ -100,11 +100,13 @@ Typer.init();
 
 var timer = setInterval("t();", 30);
 function t() {
+  document.body.style.overflowY = "hidden";
   document.getElementById("nav").style.position = "fixed";
   Typer.addText({ keyCode: 123748 });
 
   if (Typer.index > 100) {
     document.getElementById("nav").style.position = "absolute";
+    document.body.style.overflowY = "visible";
   }
   if (Typer.index > Typer.text.length) {
     clearInterval(timer);
