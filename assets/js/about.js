@@ -10,7 +10,7 @@ const aboutContent = String.raw`
 <p class="terminal-paragraph">Currently I am a AI/ML Engineer at ML6, Ghent. Prior to this, I worked as a Research Engineer on Machine Learning applied on Medical/Pharma data. Regarding my education: I received my Master's in Artificial Intelligence at KU Leuven, Belgium and also hold a diploma in Computer Engineering and Informatics at the University of Patras.</p>
 <p class="terminal-paragraph">Beyond engineering, jazz manouche guitar and the double bass keep me curious. You can find our band, Manouchedrome, playing very often in Brussels, Ghent and beyond.</p>
 <img class="terminal-image terminal-image--gif" src="./assets/img/double_bass.gif" alt="Looping animation of a double bass illustration">
-<p class="terminal-paragraph">Outside of nerdy stuff, I enjoy doing calisthenics, a form of exercise that combines strength and flexibility training using bodyweight movements.</p>
+<p class="terminal-paragraph">Nerdy stuff aside, I enjoy doing calisthenics, a form of exercise that combines strength and flexibility training using bodyweight movements.</p>
 `;
 
 const mountTyper = () => {
