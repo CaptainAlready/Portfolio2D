@@ -1,24 +1,67 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <title>Panos Kapetanidis</title>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./assets/css/index.css">
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@alphardex/aqua.css@1.5.0/dist/aqua.min.css'>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Terminal inspired portfolio of Panos Kapetanidis, a computer engineer focused on audio processing and machine learning.">
+  <title>Panos Kapetanidis · Portfolio</title>
+  <link rel="stylesheet" href="./assets/css/index.css">
 </head>
 
-<body>
+<body data-page="home">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <span class="brand">Panos Kapetanidis</span>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="site-nav__link" data-nav="home" href="./index.html">Home</a>
+        <a class="site-nav__link" data-nav="about" href="./about.html">About</a>
+        <a class="site-nav__link" data-nav="experience" href="./experience.html">Experience</a>
+        <a class="site-nav__link" data-nav="projects" href="./projects.html">Projects</a>
+      </nav>
+    </div>
+  </header>
 
-  <div id="nav">
-    <a href="./index.html" class="navtext"> Home</a>
-    <a href="./about.html" class="navtext"> About</a>
-    <a href="./experience.html" class="navtext">Experience</a>
-    <a href="./projects.html" class="navtext">Projects</a>
-  </div>
-  <div id="about_img">
-    <img id="gif" src="./assets/img/home_name.png">
-  </div>
+  <main id="main-content" class="site-main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Terminal Mode</p>
+        <h1 id="hero-title" class="hero__title">Hi, I’m Panos Kapetanidis</h1>
+        <p class="hero__description">
+          AI/ML Engineer at Day, jazz manouche musician by night.
+          I enjoy creating intelligent and scalable technology (most of the time).
+          Welcome!
+        </p>
+        <div class="hero__actions">
+          <a class="button" href="./projects.html">View Projects</a>
+          <a class="button button--secondary" href="./experience.html">See Experience</a>
+        </div>
+      </div>
+      <figure class="hero__visual">
+        <img src="./assets/img/me.png" alt="Portrait of Panos Kapetanidis">
+        <figcaption class="hero__caption">Representative picture of myself</figcaption>
+      </figure>
+    </section>
+
+    <section class="terminal" aria-labelledby="terminal-intro">
+      <h2 id="terminal-intro" class="terminal-heading">Console Snapshot</h2>
+      <div class="terminal__screen">
+        <p class="terminal-paragraph">
+          Peek into the terminal to find animated stories about my background, experience, and projects.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span></span>
+      <span>© <span id="year">2024</span> Panos Kapetanidis</span>
+    </div>
+  </footer>
+
+  <script type="module" src="./assets/js/home.js"></script>
 </body>
 
 </html>

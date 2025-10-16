@@ -1,114 +1,31 @@
+import './site.js';
+import { Typer } from './typer.js';
 
-var Typer = {
-  text: "",
-  accessCountimer: null,
-  index: 0,
-  speed: 2,
-  file: "",
-  accessCount: 0,
-  deniedCount: 0,
-  init: function () {
-    accessCountimer = setInterval(function () {
-      Typer.updLstChr();
-    }, 500);
-    $.get(Typer.file, function (data) {
-      Typer.text = data;
-      Typer.text = Typer.text.slice(0, Typer.text.length - 1);
-    });
-  },
+const projectsContent = String.raw`
+<span class="terminal-accent">PanosKapetanidis</span>:<span class="terminal-success">~</span><span class="terminal-secondary">$</span> cd PanosKapetanidis/Projects<br>
+<span class="terminal-accent">PanosKapetanidis</span>:<span class="terminal-success">~</span><span class="terminal-secondary">$</span> ls -1<br><br>
+<p class="terminal-paragraph">Explore more repositories on <a class="terminal-link" href="https://github.com/CaptainAlready">GitHub</a>.</p>
+<span class="terminal-project">CrossAI</span>
+<p class="terminal-paragraph">Led the development of audio data processing and preparation modules, engineering pipelines that transform audio, extract features, and feed TensorFlow deep learning models.</p>
+<span class="terminal-project">TheMatrix3DPortfolio</span>
+<p class="terminal-paragraph">A personal portfolio inspired by the Matrix desk scene—blending a Three.js and React.js 3D environment with a traditional static website rendered inside a virtual monitor.</p>
+<img class="terminal-image terminal-image--gif" src="./assets/img/3DMatrix.gif" alt="Animation of the 3D Matrix portfolio project monitor">
+<span class="terminal-project">SimpleSpecAugment</span>
+<p class="terminal-paragraph"><a class="terminal-link" href="https://github.com/CaptainAlready/SimpleSpecAugment">Repository link</a> — a concise implementation of SpecAugment using NumPy and functional programming to quickly generate augmented spectrograms without external dependencies.</p>
+<img class="terminal-image terminal-image--project" src="./assets/img/spec_augment.png" alt="Visualization of augmented spectrograms produced by SimpleSpecAugment">
+`;
 
-  content: function () {
-    return $("#console").html();
-  },
+const mountTyper = () => {
+  const target = document.querySelector('[data-terminal]');
+  if (!target) {
+    return;
+  }
 
-  write: function (str) {
-    $("#console").append(str);
-    return false;
-  },
-
-  addText: function (key) {
-    if (key.keyCode == 18) {
-      Typer.accessCount++;
-      if (Typer.accessCount >= 3) {
-        Typer.makeAccess();
-      }
-    } else if (key.keyCode == 20) {
-      Typer.deniedCount++;
-
-      if (Typer.deniedCount >= 3) {
-        Typer.makeDenied();
-      }
-    } else if (key.keyCode == 27) {
-      Typer.hidepop();
-    } else if (Typer.text) {
-      var cont = Typer.content();
-      if (cont.substring(cont.length - 1, cont.length) == "|")
-        $("#console").html(
-          $("#console")
-            .html()
-            .substring(0, cont.length - 1)
-        );
-      if (key.keyCode != 8) {
-        Typer.index += Typer.speed;
-      } else {
-        if (Typer.index > 0) Typer.index -= Typer.speed;
-      }
-      var text = Typer.text.substring(0, Typer.index);
-      var rtn = new RegExp("\n", "g");
-
-      $("#console").html(text.replace(rtn, "<br/>"));
-      window.scrollBy(0, 50);
-    }
-
-    if (key.preventDefault && key.keyCode != 122) {
-      key.preventDefault();
-    }
-
-    if (key.keyCode != 122) {
-      // otherway prevent keys default behavior
-      key.returnValue = false;
-    }
-  },
-
-  updLstChr: function () {
-    var cont = this.content();
-    if (cont.substring(cont.length - 1, cont.length) == "|")
-      $("#console").html(
-        $("#console")
-          .html()
-          .substring(0, cont.length - 1)
-      );
-    else this.write("|"); // else write it
-  },
+  new Typer(target, {
+    text: projectsContent,
+    typingDelay: 18,
+    chunkSize: 2,
+  });
 };
 
-function replaceUrls(text) {
-  var http = text.indexOf("http://");
-  var space = text.indexOf(".me ", http);
-
-  if (space != -1) {
-    var url = text.slice(http, space - 1);
-    return text.replace(url, '<a href="' + url + '">' + url + "</a>");
-  } else {
-    return text;
-  }
-}
-
-Typer.speed = 3;
-Typer.file = "./assets/pages/projects.html";
-Typer.init();
-
-var timer = setInterval("t();", 30);
-function t() {
-  document.body.style.overflowY = "hidden";
-  document.getElementById("nav").style.position = "fixed";
-  Typer.addText({ keyCode: 123748 });
-
-  if (Typer.index > 100) {
-    document.getElementById("nav").style.position = "absolute";
-    document.body.style.overflowY = "visible";
-  }
-  if (Typer.index > Typer.text.length) {
-    clearInterval(timer);
-  }
-}
+document.addEventListener('DOMContentLoaded', mountTyper);

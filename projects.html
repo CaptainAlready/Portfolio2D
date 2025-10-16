@@ -1,27 +1,50 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <title>Panos Kapetanidis</title>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./assets/css/index.css">
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@alphardex/aqua.css@1.5.0/dist/aqua.min.css'>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Highlighted personal and collaborative projects by Panos Kapetanidis.">
+  <title>Projects · Panos Kapetanidis</title>
+  <link rel="stylesheet" href="./assets/css/index.css">
 </head>
 
-<body>
-  <div id="nav">
-    <a href="./index.html" class="navtext"> Home</a>
-    <a href="./about.html" class="navtext"> About</a>
-    <a href="./experience.html" class="navtext">Experience</a>
-    <a href="./projects.html" class="navtext">Projects</a>
-  </div>
-</body>
+<body data-page="projects">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <span class="brand">Panos Kapetanidis</span>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="site-nav__link" data-nav="home" href="./index.html">Home</a>
+        <a class="site-nav__link" data-nav="about" href="./about.html">About</a>
+        <a class="site-nav__link" data-nav="experience" href="./experience.html">Experience</a>
+        <a class="site-nav__link" data-nav="projects" href="./projects.html">Projects</a>
+      </nav>
+    </div>
+  </header>
 
-<div id="contentwrapper">
-  <script type="text/javascript" src="./assets/js/projects.js">
-  </script>
-  <div id="console"></div>
-  </script>
-</div>
+  <main id="main-content" class="site-main">
+    <header class="page-intro">
+      <h1 class="page-intro__title">Projects</h1>
+      <p class="page-intro__description">
+        Some of the projects I have worked on!
+      </p>
+    </header>
+
+    <section class="terminal" aria-labelledby="projects-terminal">
+      <h2 id="projects-terminal" class="terminal-heading">cat Projects.txt</h2>
+      <div class="terminal__screen" data-terminal></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span></span>
+      <span>© <span id="year">2024</span> Panos Kapetanidis</span>
+    </div>
+  </footer>
+
+  <script type="module" src="./assets/js/projects.js"></script>
+</body>
 
 </html>

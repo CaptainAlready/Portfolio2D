@@ -1,116 +1,43 @@
+import './site.js';
+import { Typer } from './typer.js';
 
-var Typer = {
-  text: "",
-  accessCountimer: null,
-  index: 0,
-  speed: 2,
-  file: "",
-  accessCount: 0,
-  deniedCount: 0,
-  init: function () {
-    accessCountimer = setInterval(function () {
-      Typer.updLstChr();
-    }, 500);
-    $.get(Typer.file, function (data) {
-      Typer.text = data;
-      Typer.text = Typer.text.slice(0, Typer.text.length - 1);
-    });
-  },
+const experienceContent = String.raw`
+<span class="terminal-accent">PanosKapetanidis</span>:<span class="terminal-success">~</span><span class="terminal-secondary">$</span> cd PanosKapetanidis/Experience<br>
+<span class="terminal-accent">PanosKapetanidis</span>:<span class="terminal-success">~</span><span class="terminal-secondary">$</span> tail -f ProfessionalExperience.log<br><br>
 
-  content: function () {
-    return $("#console").html();
-  },
+<span class="terminal-heading">Currently</span>
+<p class="terminal-paragraph"><span class="terminal-secondary">Machine Learning / AI Engineer</span> at ML6, Ghent — working on applied AI and data solutions.</p>
 
-  write: function (str) {
-    $("#console").append(str);
-    return false;
-  },
+<span class="terminal-heading">Work Experience</span>
+<ul class="terminal-list">
+<li><span class="terminal-date">[2025-10-06] &ndash; now</span><span class="terminal-secondary"> Machine Learning / AI Engineer</span> ML6, Ghent — developing and deploying AI-powered systems and data-driven solutions.</li>
+<li><span class="terminal-date">[2023-02-01] &ndash; [2024-02-17]</span><span class="terminal-secondary"> Research Engineer</span> IoT Laboratory, University of Patras — applied machine learning to medical audio data.</li>
+</ul>
 
-  addText: function (key) {
-    if (key.keyCode == 18) {
-      Typer.accessCount++;
+<span class="terminal-heading">Academic Experience</span>
+<ul class="terminal-list">
+<li><span class="terminal-date">[2024-09-01] &ndash; [2025-08-01]/span><span class="terminal-secondary"> Student</span> KU Leuven, Belgium — Advanced Masters of Artificial Intelligence</li>
+<li><span class="terminal-date">[2018-09-01] &ndash; [2023-07-01]</span><span class="terminal-secondary"> Student</span> University of Patras, Greece — Computer Engineering and Informatics (Diploma)</li>
+<li><span class="terminal-date">[2017-09-01] &ndash; [2018-07-01]</span><span class="terminal-secondary"> Student</span> 3rd General Lyceum of Mytilene, Greece</li>
+<li><span class="terminal-date">[2016-09-01] &ndash; [2017-07-01]</span><span class="terminal-secondary"> Student</span> Experimental High School of Mytilene, Greece</li>
+</ul>
 
-      if (Typer.accessCount >= 3) {
-        Typer.makeAccess();
-      }
-    } else if (key.keyCode == 20) {
-      Typer.deniedCount++;
+<p class="terminal-paragraph">Complete resume: <a class="terminal-link" href="https://drive.google.com/file/d/1kKmryTIh3CRLiSk02l8IDIgeI84Zn7fx/view">Download CV</a></p>
+<p class="terminal-paragraph">Find me on <a class="terminal-link" href="https://www.linkedin.com/in/kapetanidispanagiotis/">LinkedIn</a></p>
+`;
 
-      if (Typer.deniedCount >= 3) {
-        Typer.makeDenied();
-      }
-    } else if (key.keyCode == 27) {
-      Typer.hidepop();
-    } else if (Typer.text) {
-      var cont = Typer.content();
-      if (cont.substring(cont.length - 1, cont.length) == "|")
-        $("#console").html(
-          $("#console")
-            .html()
-            .substring(0, cont.length - 1)
-        );
-      if (key.keyCode != 8) {
-        Typer.index += Typer.speed;
-      } else {
-        if (Typer.index > 0) Typer.index -= Typer.speed;
-      }
-      var text = Typer.text.substring(0, Typer.index);
-      var rtn = new RegExp("\n", "g");
 
-      $("#console").html(text.replace(rtn, "<br/>"));
-      window.scrollBy(0, 50);
-    }
+const mountTyper = () => {
+  const target = document.querySelector('[data-terminal]');
+  if (!target) {
+    return;
+  }
 
-    if (key.preventDefault && key.keyCode != 122) {
-      key.preventDefault();
-    }
-
-    if (key.keyCode != 122) {
-      // otherway prevent keys default behavior
-      key.returnValue = false;
-    }
-  },
-
-  updLstChr: function () {
-    var cont = this.content();
-
-    if (cont.substring(cont.length - 1, cont.length) == "|")
-      $("#console").html(
-        $("#console")
-          .html()
-          .substring(0, cont.length - 1)
-      );
-    else this.write("|"); // else write it
-  },
+  new Typer(target, {
+    text: experienceContent,
+    typingDelay: 18,
+    chunkSize: 2,
+  });
 };
 
-function replaceUrls(text) {
-  var http = text.indexOf("http://");
-  var space = text.indexOf(".me ", http);
-
-  if (space != -1) {
-    var url = text.slice(http, space - 1);
-    return text.replace(url, '<a href="' + url + '">' + url + "</a>");
-  } else {
-    return text;
-  }
-}
-
-Typer.speed = 3;
-Typer.file = "./assets/pages/experience.html";
-Typer.init();
-
-var timer = setInterval("t();", 30);
-function t() {
-  document.body.style.overflowY = "hidden";
-  document.getElementById("nav").style.position = "fixed";
-  Typer.addText({ keyCode: 123748 });
-
-  if (Typer.index > 100) {
-    document.getElementById("nav").style.position = "absolute";
-    document.body.style.overflowY = "visible";
-  }
-  if (Typer.index > Typer.text.length) {
-    clearInterval(timer);
-  }
-}
+document.addEventListener('DOMContentLoaded', mountTyper);
